@@ -150,11 +150,15 @@ DRONE.API = (function() {
     connect(sockets['nav']);
 
     // get a video stream from the drone
-    // TODO: connect(sockets['vid'], 'tcp');
+    connect(sockets['vid'], 'tcp');
 
     // send admin commands to the drone
     connect(sockets['cmd']);
   }
+
+  function get_socket(key) {
+    return sockets[key];
+  };
 
   /**
    * Closes and discards all the socket connections
@@ -163,7 +167,7 @@ DRONE.API = (function() {
     disconnect(sockets['at'].socket);
     disconnect(sockets['nav'].socket);
     disconnect(sockets['cmd'].socket);
-    // TODO: disconnect(sockets['vid'].socket);
+    disconnect(sockets['vid'].socket);
   }
 
   /**
@@ -418,6 +422,7 @@ DRONE.API = (function() {
 
   return {
     init: init,
+    sockets: sockets,
     takeOff: takeOff,
     land: land,
     raiseLower: raiseLower,
