@@ -14,6 +14,18 @@ DRONE.gestures =
                 case 'down':
                     DRONE.API.land();
                     break;
+					
+				case 'right':
+                    DRONE.API.rotateLeftRight(-0.14);
+					DRONE.API.tiltLeftRight(0.1);
+					DRONE.API.tiltFrontBack(-0.1);
+                    break;
+					
+				case 'left':
+                    DRONE.API.rotateLeftRight(0.14);
+					DRONE.API.tiltLeftRight(-0.1);
+					DRONE.API.tiltFrontBack(0.1);
+                    break;
 
                 case 'overview':
                     DRONE.API.allStop();

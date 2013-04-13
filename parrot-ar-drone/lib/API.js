@@ -27,7 +27,7 @@ DRONE.API = (function() {
   var TO_DRONE = 0;
   var TO_CLIENT = 1;
   var DRONE_IP = "192.168.1.1";
-  var CLIENT_IP = "192.168.1.4";
+  var CLIENT_IP = "192.168.1.2";
   var CONNECTIONS = 3;
   var ONE_BUFFER = DRONE.Util.uint8ToArrayBuffer(1);
   var TAKEOFF = 290718208; // 512
@@ -393,6 +393,7 @@ DRONE.API = (function() {
 
   function land() {
     status.mode = LAND;
+	log("LAND");
   }
 
   function raiseLower(val) {
