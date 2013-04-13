@@ -1,7 +1,20 @@
 // based on https://github.com/willy-vvu/reveal.js (@bc124c30fad12c3f7c0cacd39ff3d1bd853cce91)
 var gestures = {
-    command: function() {
+    command: function(cmd) {
         console.log("gesture: ", arguments);
+		switch(cmd) {
+        case 'up':
+          DRONE.API.takeOff();
+          break;
+
+        case 'down':
+          DRONE.API.land();
+          break;
+
+        case 'overview':
+          DRONE.API.allStop();
+          break;
+      }
     }
 }
 navigator.webkitGetUserMedia({audio:true,video:true},function(stream){
