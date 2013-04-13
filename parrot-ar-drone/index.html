@@ -18,18 +18,12 @@
 
   <div id="commands">
     <h2>Command log</h2>
-<<<<<<< HEAD
 	
 	<div id="buttonSet">
-	<button class="classname" id="gamepad" type="button" onclick="onClickButton(gamepad)">Activate Gamepad</button>
-	<button class="classname" type="button" id="gesture" onclick="onClickButton(gesture)">Activate Gesture</button>
+	<!-- <input type="radio" class="classname" id="gamepad" value="gamepad" >Activate Gamepad</input> -->
+	<input type="radio" class="classname" type="button" id="gesture" value="gesture" checked="true">Activate Gesture</input>
 	</div>
-=======
-	<form>
-	<input type="radio" name="inputType" id="gesture" value="gesture" checked>Gesture<br>
-	<input type="radio" name="inputType" id="joyStick" value="gamepad">JoyStick
-	</form>
->>>>>>> af4a574425fe1108b2201e8063cc0403e682993b
+
     <textarea id="log"></textarea>
 	
   </div>
@@ -41,7 +35,7 @@
   </div>
 
   <video  id="video" autoplay width="400" style="display:none"></video>
-  <canvas id="canvas" style="width:600px;display:none;"></canvas>
+  <canvas id="canvas" style="width:600px;display:block;"></canvas>
 
   <script src="third-party/gamepad.js"></script>
   <script src="third-party/gesture.js"></script>
