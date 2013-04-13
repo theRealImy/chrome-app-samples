@@ -7,6 +7,17 @@
  *
  * @see https://github.com/felixge/node-ar-drone
  */
+var logEl = document.getElementById('log');
+
+function clearLog() {
+  logEl.textContent = "";
+}
+
+function log(msg) {
+  logEl.textContent = msg;
+//  logEl.scrollTop = 10000000;
+}
+
 var DRONE = DRONE || {};
 DRONE.API = (function() {
 
@@ -16,7 +27,7 @@ DRONE.API = (function() {
   var TO_DRONE = 0;
   var TO_CLIENT = 1;
   var DRONE_IP = "192.168.1.1";
-  var CLIENT_IP = "192.168.1.3";
+  var CLIENT_IP = "192.168.1.4";
   var CONNECTIONS = 3;
   var ONE_BUFFER = DRONE.Util.uint8ToArrayBuffer(1);
   var TAKEOFF = 290718208; // 512
@@ -377,6 +388,7 @@ DRONE.API = (function() {
 
   function takeOff() {
     status.mode = TAKEOFF;
+	log("take OFF");
   }
 
   function land() {

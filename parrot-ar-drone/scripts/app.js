@@ -9,6 +9,14 @@ var videoSource = new MediaSource();
 
 var interval;
 
+var radios = document.getElementsByTagName('input');
+var value;
+for (var i = 0; i < radios.length; i++) {
+    if (radios[i].type === 'radio' && radios[i].checked) {
+        // get value, set checked flag or do whatever you need to
+        value = radios[i].value;       
+    }
+}
 
 
 function clearLog() {
@@ -85,9 +93,9 @@ function initInputGesture() {
 
 }
 
+
 // TODO let the user choose between gamepad and gesture-based input
-var chosenInput = "gesture";
-switch (chosenInput) {
+switch (value) {
     case "gamepad":
         initInputGamePad();
         break;
