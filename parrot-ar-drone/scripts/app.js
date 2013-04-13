@@ -79,8 +79,7 @@ function onDroneConnectionFailed() {
   }
 }
 
-function initInputGamePad(value) {
-	console.log("init :"+value);
+function initInputGamePad() {
     DRONE.Gamepad.onConnected = function() {
         
         DRONE.API.init(onDroneConnected, onDroneConnectionFailed);
@@ -91,6 +90,7 @@ function initInputGamePad(value) {
 }
 
 function initInputGesture() {
+<<<<<<< HEAD
 	console.log("init :"+value);
 	
 }
@@ -105,4 +105,17 @@ function onClickButton(value) {
 			initInputGesture();
 			break;
 	}
+=======
+    DRONE.gestures.init();
+}
+
+console.log("init :"+value);
+switch (value) {
+    case "gamepad":
+        initInputGamePad();
+        break;
+    case "gesture":
+        initInputGesture();
+        break;
+>>>>>>> af4a574425fe1108b2201e8063cc0403e682993b
 }
