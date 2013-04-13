@@ -10,8 +10,8 @@ var gamepadSupport = {
     prevRawGamepadTypes: [],
     prevTimestamps: [],
     sendUpdates: false,
-    init: function () {
-        console.log("init");
+    init: function (value) {
+        console.log("init ");
         var gamepadSupportAvailable = !! navigator.webkitGetGamepads || !! navigator.webkitGamepads || (navigator.userAgent.indexOf('Firefox/') != -1);
         if (!gamepadSupportAvailable) {
             DRONE.Gamepad.showNotSupported();
