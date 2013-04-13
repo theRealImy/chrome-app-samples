@@ -71,12 +71,27 @@ function onDroneConnectionFailed() {
   }
 }
 
-DRONE.Gamepad.onConnected = function() {
-  commandLog.style.display = "block";
-  DRONE.API.init(onDroneConnected, onDroneConnectionFailed);
-};
+function initInputGamePad() {
+    DRONE.Gamepad.onConnected = function() {
+        commandLog.style.display = "block";
+        DRONE.API.init(onDroneConnected, onDroneConnectionFailed);
+    };
+    // start the gamepad
+    gamepadSupport.init();
+    DRONE.Gamepad.onConnected();
+}
 
-// start the gamepad
-gamepadSupport.init();
-DRONE.Gamepad.onConnected();
+function initInputGesture() {
 
+}
+
+// TODO let the user choose between gamepad and gesture-based input
+var chosenInput = "gesture";
+switch (chosenInput) {
+    case "gamepad":
+        initInputGamePad();
+        break;
+    case "gesture":
+        initInputGesture();
+        break;
+}
