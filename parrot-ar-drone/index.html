@@ -18,10 +18,11 @@
 
   <div id="commands">
     <h2>Command log</h2>
-	<form>
-	<input type="radio" name="inputType" id="gesture" value="gesture" >Gesture<br>
-	<input type="radio" name="inputType" id="joyStick" value="gamepad" checked="true">JoyStick
-	</form>
+	
+	<div id="buttonSet">
+	<button class="classname" id="gamepad" type="button" onclick="onClickButton(gamepad)">Activate Gamepad</button>
+	<button class="classname" type="button" id="gesture" onclick="onClickButton(gesture)">Activate Gesture</button>
+	</div>
     <textarea id="log"></textarea>
 	
   </div>
@@ -32,8 +33,8 @@
     <canvas id="comp"></canvas>
   </div>
 
-  <video id="video" autoplay width="300" style="display:none"></video>
-  <canvas id="canvas" style="width:300px;display:none;"></canvas>
+  <video  id="video" autoplay width="400" style="display:none"></video>
+  <canvas id="canvas" style="width:600px;display:none;"></canvas>
 
   <script src="third-party/gamepad.js"></script>
   <script src="third-party/gesture.js"></script>

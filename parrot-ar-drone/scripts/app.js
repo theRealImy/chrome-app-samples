@@ -9,14 +9,14 @@ var videoSource = new MediaSource();
 
 var interval;
 
-var radios = document.getElementsByTagName('input');
-var value;
-for (var i = 0; i < radios.length; i++) {
-    if (radios[i].type === 'radio' && radios[i].checked) {
-        // get value, set checked flag or do whatever you need to
-        value = radios[i].value;       
-    }
-}
+// var radios = document.getElementsByTagName('input');
+// var value;
+// for (var i = 0; i < radios.length; i++) {
+    // if (radios[i].type === 'radio' && radios[i].checked) {
+        // // get value, set checked flag or do whatever you need to
+        // value = radios[i].value;       
+    // }
+// }
 
 
 function clearLog() {
@@ -82,7 +82,7 @@ function onDroneConnectionFailed() {
 function initInputGamePad(value) {
 	console.log("init :"+value);
     DRONE.Gamepad.onConnected = function() {
-        commandLog.style.display = "block";
+        
         DRONE.API.init(onDroneConnected, onDroneConnectionFailed);
     };
     // start the gamepad
@@ -92,15 +92,17 @@ function initInputGamePad(value) {
 
 function initInputGesture() {
 	console.log("init :"+value);
+	
 }
 
-
-// TODO let the user choose between gamepad and gesture-based input
-switch (value) {
-    case "gamepad":
-        initInputGamePad(value);
-        break;
-    case "gesture":
-        initInputGesture();
-        break;
+function onClickButton(value) {
+	// TODO let the user choose between gamepad and gesture-based input
+	switch (value) {
+		case "gamepad":
+			initInputGamePad(value);
+			break;
+		case "gesture":
+			initInputGesture();
+			break;
+	}
 }
