@@ -79,7 +79,8 @@ function onDroneConnectionFailed() {
   }
 }
 
-function initInputGamePad() {
+function initInputGamePad(value) {
+	console.log("init :"+value);
     DRONE.Gamepad.onConnected = function() {
         commandLog.style.display = "block";
         DRONE.API.init(onDroneConnected, onDroneConnectionFailed);
@@ -90,14 +91,14 @@ function initInputGamePad() {
 }
 
 function initInputGesture() {
-
+	console.log("init :"+value);
 }
 
 
 // TODO let the user choose between gamepad and gesture-based input
 switch (value) {
     case "gamepad":
-        initInputGamePad();
+        initInputGamePad(value);
         break;
     case "gesture":
         initInputGesture();
