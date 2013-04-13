@@ -14,7 +14,7 @@ function parseMoreData(moreBuffer){
         cur_buffer = moreBuffer;
     }
 
-    console.log(cur_buffer.byteLength);
+    //console.log(cur_buffer.byteLength);
 
     if (read_more > 0) {
         if (cur_buffer.byteLength <= read_more) {
@@ -23,12 +23,12 @@ function parseMoreData(moreBuffer){
         payload = cur_buffer.slice(0, read_more);
         cur_buffer = cur_buffer.slice(read_more);
         read_more = 0;
-        console.log("Out 1");
+        //console.log("Out 1");
         return payload;
     }
 
     var header_data = parseHeader(cur_buffer);
-    console.log(header_data);
+    //console.log(header_data);
     if (!header_data.header_size) {
         return;
     }
@@ -43,14 +43,14 @@ function parseMoreData(moreBuffer){
         console.log("huuuuuuuge");
         payload = cur_buffer.slice(header_data.header_size, package_length);
         cur_buffer = cur_buffer.slice(package_length);
-        console.log("Out 2");
+        //console.log("Out 2");
         return payload;
     } 
 
     payload = cur_buffer.slice(header_data.header_size);
     read_more = header_data.payload_size;
     cur_buffer = payload;
-    console.log(payload);
+    //console.log(payload);
     return;
 }
 
@@ -63,7 +63,7 @@ function parseHeader(buffer){
     var signature = String.fromCharCode.apply(null, new Uint8Array(buffer, cur_pos, 4));
     cur_pos += 4;
 
-    console.log(signature);
+    //console.log(signature);
     if (signature != "PaVE") {
         throw "Not gonna happen!";
     }

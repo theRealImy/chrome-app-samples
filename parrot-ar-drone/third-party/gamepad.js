@@ -11,6 +11,7 @@ var gamepadSupport = {
     prevTimestamps: [],
     sendUpdates: false,
     init: function () {
+        console.log("init");
         var gamepadSupportAvailable = !! navigator.webkitGetGamepads || !! navigator.webkitGamepads || (navigator.userAgent.indexOf('Firefox/') != -1);
         if (!gamepadSupportAvailable) {
             DRONE.Gamepad.showNotSupported();
@@ -23,6 +24,7 @@ var gamepadSupport = {
         }
     },
     onGamepadConnect: function (event) {
+        console.log(event);
         gamepadSupport.gamepads.push(event.gamepad);
         DRONE.Gamepad.updateGamepads(gamepadSupport.gamepads);
         gamepadSupport.startPolling();

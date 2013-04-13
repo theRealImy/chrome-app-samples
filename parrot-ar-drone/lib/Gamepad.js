@@ -14,7 +14,6 @@ DRONE.Gamepad = (function() {
   }
 
   function updateButton(value, gamepadId, label) {
-
     if(active && value === 1) {
       switch(label) {
         case 'button-right-shoulder-top':

@@ -30,10 +30,10 @@ function onDroneConnected() {
     console.log(e);
   });
 
-  video.addEventListener("progress", function(x) {console.log(x);});
-  video.addEventListener("playing", function(x) {console.log(x);});
-  video.addEventListener("ended", function(x) {console.log(x);});
-  video.addEventListener("error", function(x) {console.log(x); console.log(video.error); console.log(video)});
+  //video.addEventListener("progress", function(x) {console.log(x);});
+  //video.addEventListener("playing", function(x) {console.log(x);});
+  //video.addEventListener("ended", function(x) {console.log(x);});
+  //video.addEventListener("error", function(x) {console.log(x); console.log(video.error); console.log(video)});
 
 
   videoSource.addEventListener('webkitsourceopen', function(e) {
@@ -41,18 +41,18 @@ function onDroneConnected() {
     // console.log(sourceBuffer);
 
   interval = setInterval(function() {
-      console.log("yay");
+      //console.log("yay");
       chrome.socket.read(DRONE.API.sockets["vid"].socket, function(data){
-        console.log(data);
+        //console.log(data);
         var buffer = parseMoreData(data.data);
-        console.log(buffer);
+        //console.log(buffer);
         if (buffer && buffer.byteLength) {
-          console.log(videoSource);
-          console.log(videoSource.sourceBuffers.length);
+          //console.log(videoSource);
+          //console.log(videoSource.sourceBuffers.length);
           var sourceBuffer = videoSource.addSourceBuffer('video/mp4; codecs="avc1.42E01E, mp4a.40.2"');
           sourceBuffer.append(new Uint8Array(buffer));
-          console.log(videoSource.sourceBuffers.length);
-          console.log(videoSource);
+          //console.log(videoSource.sourceBuffers.length);
+          //console.log(videoSource);
           video.play();
         }
       });
@@ -60,8 +60,8 @@ function onDroneConnected() {
   });
 
   DRONE.Gamepad.enable();
-  message.style.display = "none";
-  instructions.style.display = "block";
+  //message.style.display = "none";
+  //instructions.style.display = "block";
 }
 
 function onDroneConnectionFailed() {
@@ -77,6 +77,6 @@ DRONE.Gamepad.onConnected = function() {
 };
 
 // start the gamepad
-// gamepadSupport.init();
+gamepadSupport.init();
 DRONE.Gamepad.onConnected();
 
