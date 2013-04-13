@@ -26,9 +26,17 @@
 	
   </div>
 
-  <video id="live" width="640" height="480" />
+  <video id="live" width="640" height="480"></video>
+
+  <div id="disp">
+    <canvas id="comp"></canvas>
+  </div>
+
+  <video id="video" autoplay width="300" style="display:none"></video>
+  <canvas id="canvas" style="width:300px;display:none;"></canvas>
 
   <script src="third-party/gamepad.js"></script>
+  <script src="third-party/gesture.js"></script>
 
   <script src="lib/Util.js"></script>
   <script src="lib/NavData.js"></script>

@@ -1,13 +1,20 @@
-// copied from https://github.com/willy-vvu/reveal.js (@bc124c30fad12c3f7c0cacd39ff3d1bd853cce91)
-video=document.getElementById('video')
-canvas=document.getElementById('canvas')
-_=canvas.getContext('2d')
-ccanvas=document.getElementById('comp')
-c_=ccanvas.getContext('2d')
+// based on https://github.com/willy-vvu/reveal.js (@bc124c30fad12c3f7c0cacd39ff3d1bd853cce91)
+var gestures = {
+    command: function() {
+        console.log("gesture: ", arguments);
+    }
+}
 navigator.webkitGetUserMedia({audio:true,video:true},function(stream){
     s=stream
-    video.src=window.webkitURL.createObjectURL(stream)
-    video.addEventListener('play',
+
+    gestures.video = document.getElementById('video');
+    gestures.canvas = document.getElementById('canvas');
+    _=canvas.getContext('2d')
+    ccanvas=document.getElementById('comp')
+    c_=ccanvas.getContext('2d')
+
+    gestures.video.src=window.webkitURL.createObjectURL(stream)
+    gestures.video.addEventListener('play',
         function(){setInterval(dump,1000/25)}
     )
 },function(){
@@ -16,13 +23,13 @@ navigator.webkitGetUserMedia({audio:true,video:true},function(stream){
 compression=5
 width=height=0
 function dump(){
-    if(canvas.width!=video.videoWidth){
-        width=Math.floor(video.videoWidth/compression)
-        height=Math.floor(video.videoHeight/compression)
+    if(canvas.width!=gestures.video.videoWidth){
+        width=Math.floor(gestures.video.videoWidth/compression)
+        height=Math.floor(gestures.video.videoHeight/compression)
         canvas.width=ccanvas.width=width
         canvas.height=ccanvas.height=height
     }
-    _.drawImage(video,width,0,-width,height)
+    _.drawImage(gestures.video,width,0,-width,height)
     draw=_.getImageData(0,0,width,height)
     //c_.putImageData(draw,0,0)
     test()
@@ -108,31 +115,25 @@ function handledown(){
             var dirx=Math.abs(dy)<Math.abs(dx)//(dx,dy) is on a bowtie
             //console.log(good,davg)
             if(dx<-movethresh&&dirx){
-                //console.log('right')
-                Reveal.navigateRight()
+                gestures.command("left");
             }
             else if(dx>movethresh&&dirx){
-                //console.log('left')
-                Reveal.navigateLeft()
+                gestures.command("right");
             }
             if(dy>movethresh&&!dirx){
                 if(davg>overthresh){
-                    //console.log('over up')
-                    Reveal.toggleOverview()
+                    gestures.command("overview");
                 }
                 else{
-                    //console.log('up')
-                    Reveal.navigateUp()
+                    gestures.command("down");
                 }
             }
             else if(dy<-movethresh&&!dirx){
                 if(davg>overthresh){
-                    //console.log('over down')
-                    Reveal.toggleOverview()
+                    gestures.command("overview");
                 }
                 else{
-                    //console.log('down')
-                    Reveal.navigateDown()
+                    gestures.command("up");
                 }
             }
             state=2
